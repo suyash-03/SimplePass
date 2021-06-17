@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "754544459193",
+    "project_id": "simplepass-88e55",
+    "storage_bucket": "simplepass-88e55.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754544459193:android:1a9aa6ff90f09720750a68",
+        "android_client_info": {
+          "package_name": "com.suyash.password_generator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754544459193-cn3plhpu9dn4v3jh506u0gpkgjd31q29.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.suyash.password_generator",
+            "certificate_hash": "2f386746157d9aa43ac4515aa854aafc669dc615"
+          }
+        },
+        {
+          "client_id": "754544459193-34dnvk0un50ktp5j4vhiqbccsrlrj3vi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARDPzlXG7PXOYNy4panpNdjG30P2Mj1h8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754544459193-34dnvk0un50ktp5j4vhiqbccsrlrj3vi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
