@@ -7,7 +7,7 @@ class GeneratorClass {
     final lettersUpperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' ;
     final lettersLowerCase = ' abcdefghijklmnopqrstuvwxyz' ;
     final numbers = '1234567890';
-    final specialChars = '!@#%^&*()';
+    final specialChars = '!@#%^&*';
     final length = 20;
 
     String pass ='';

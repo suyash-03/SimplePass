@@ -7,10 +7,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:password_generator/Authentication/googleSignIn.dart';
 import 'package:password_generator/Constants/rotateTextStyle.dart';
 import 'package:password_generator/Generator/generator.dart';
+import 'package:password_generator/shared/navigationDrawer.dart';
 import 'package:provider/provider.dart';
 
 class GeneratePage extends StatefulWidget {
-  const GeneratePage({Key key}) : super(key: key);
+  final void Function() pageButtonPress;
+
+  GeneratePage(this.pageButtonPress);
 
   @override
   _GeneratePageState createState() => _GeneratePageState();
@@ -19,6 +22,7 @@ class GeneratePage extends StatefulWidget {
 class _GeneratePageState extends State<GeneratePage> {
   final textController = TextEditingController();
   String finalGeneratedPassword = '';
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void dispose() {
@@ -39,21 +43,41 @@ class _GeneratePageState extends State<GeneratePage> {
     final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
     final password = Provider.of<GeneratorClass>(context);
 
+
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: NavigationDrawerWidget(),
       backgroundColor: Color(0xffe79aad),
       body: Column(
         children: [
+          SizedBox(
+            height: 50,
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 5, 0, 0),
+            child: Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                    icon: FaIcon(FontAwesomeIcons.gripLines),
+                    onPressed: () async {
+                      _scaffoldKey.currentState.openDrawer();
+                    })),
+          ),
           FadeInDown(
-            child: ClipPath(
-              clipper: DiagonalPathClipperTwo(),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2.5,
-                decoration: BoxDecoration(color: Color(0xfffbe1e4)),
+                height: MediaQuery.of(context).size.height / 3,
+                decoration: BoxDecoration(
+                    color: Color(0xfffbe1e4),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(40),
+                    )),
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(30, 100, 20, 10),
+                      padding: const EdgeInsets.fromLTRB(30, 60, 20, 10),
                       child: FadeInDown(
                         child: Row(
                           children: [
@@ -69,27 +93,27 @@ class _GeneratePageState extends State<GeneratePage> {
                                     text: "Hi ",
                                     style: rotateTextStyle2,
                                     children: <TextSpan>[
-                                      TextSpan(
-                                        text:
+                                  TextSpan(
+                                    text:
                                         "${FirebaseAuth.instance.currentUser.displayName}",
-                                        style: TextStyle(color: Colors.pink),
-                                      ),
-                                    ])),
+                                    style: TextStyle(color: Colors.pink),
+                                  ),
+                                ])),
                             SizedBox(
                               width: 80,
                             ),
                             Expanded(
                                 child: Container(
-                                  child: IconButton(
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.signOutAlt,
-                                      color: Colors.red,
-                                    ),
-                                    onPressed: () async {
-                                      provider.logout(context);
-                                    },
-                                  ),
-                                ))
+                              child: IconButton(
+                                icon: FaIcon(
+                                  FontAwesomeIcons.signOutAlt,
+                                  color: Colors.red,
+                                ),
+                                onPressed: () async {
+                                  provider.logout(context);
+                                },
+                              ),
+                            ))
                           ],
                         ),
                       ),
@@ -101,7 +125,7 @@ class _GeneratePageState extends State<GeneratePage> {
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "Welcome to",
-                              style: smallText,
+                              style: rotateTextStyle2,
                             )),
                       ),
                     ),
@@ -112,7 +136,7 @@ class _GeneratePageState extends State<GeneratePage> {
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "Simple Pass",
-                              style: rotateTextStyle,
+                              style: rotateTextStyleHeading,
                             )),
                       ),
                     )
@@ -121,40 +145,45 @@ class _GeneratePageState extends State<GeneratePage> {
               ),
             ),
           ),
-          FadeInDown(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(30, 80, 30, 20),
+          Container(
+            child: FadeInDown(
               child: Container(
-                child: TextField(
-                  controller: textController,
-                  readOnly: true,
-                  enableInteractiveSelection: false,
-                  decoration: new InputDecoration(
-                      suffixIcon: IconButton(
-                        icon: FaIcon(FontAwesomeIcons.copy),
-                        onPressed: (){
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 80, 30, 20),
+                  child: Container(
+                    child: TextField(
+                      controller: textController,
+                      readOnly: true,
+                      enableInteractiveSelection: false,
+                      decoration: new InputDecoration(
+                        suffixIcon: IconButton(
+                          icon: FaIcon(FontAwesomeIcons.copy),
+                          onPressed: () {
+                            //Copying to ClipBoard
+                            final data =
+                                ClipboardData(text: finalGeneratedPassword);
+                            Clipboard.setData(data);
 
-                          //Copying to ClipBoard
-                          final data = ClipboardData(text: finalGeneratedPassword);
-                          Clipboard.setData(data);
-
-                          //Creating a SnackBar
-                          final snackBar = SnackBar(content: Text(
-                            "Password Copied to Clipboard",
-                            style: rotateTextStyle,
-                          ),
-                            backgroundColor: Color(0xfffbe1e4),);
-                          Scaffold.of(context)..removeCurrentSnackBar()..showSnackBar(snackBar);
-                        },
+                            //Creating a SnackBar
+                            final snackBar = SnackBar(
+                              content: Text(
+                                "Password Copied to Clipboard",
+                                style: rotateTextStyle,
+                              ),
+                              backgroundColor: Color(0xfffbe1e4),
+                            );
+                            Scaffold.of(context)
+                              ..removeCurrentSnackBar()
+                              ..showSnackBar(snackBar);
+                          },
+                        ),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                            borderSide: BorderSide(color: Colors.pink)),
+                        fillColor: Colors.white,
+                        filled: true,
                       ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(50)),
-                        borderSide: BorderSide(
-                          color: Colors.pink
-                        )
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
+                    ),
                   ),
                 ),
               ),
@@ -187,18 +216,43 @@ class _GeneratePageState extends State<GeneratePage> {
                       fontFamily: 'SF'),
                 ),
               ),
-            ),),
-          SizedBox(height: 100,),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          FadeInDown(
+            child: Container(
+              height: 50,
+              width: 300,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  color: Colors.deepPurple),
+              child: FlatButton(
+                onPressed: () {},
+                child: Text(
+                  "Save Password",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'SF'),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
           FadeInDown(
             child: FlatButton.icon(
               icon: FaIcon(FontAwesomeIcons.arrowRight),
               label: Text("View Saved Passwords"),
-              onPressed: (){
-                //controller
+              onPressed: () {
+                widget.pageButtonPress();
               },
             ),
           )
-
         ],
       ),
     );
