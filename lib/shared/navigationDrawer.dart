@@ -8,6 +8,8 @@ import 'package:password_generator/Constants/rotateTextStyle.dart';
 import 'package:password_generator/Screens/homepage.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -51,7 +53,9 @@ class NavigationDrawerWidget extends StatelessWidget {
                   'Home',
                   style: rotateTextStyle2,
                 ),
-                onTap: () => selectedItem(context, 0),
+                onTap: (){
+                  Navigator.pop(context);
+                },
               ),
             ),
             Divider(

@@ -2,7 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:password_generator/Authentication/googleSignIn.dart';
 import 'package:password_generator/Constants/rotateTextStyle.dart';
@@ -228,7 +227,9 @@ class _GeneratePageState extends State<GeneratePage> {
                   borderRadius: BorderRadius.all(Radius.circular(50)),
                   color: Colors.deepPurple),
               child: FlatButton(
-                onPressed: () {},
+                onPressed: () {
+
+                },
                 child: Text(
                   "Save Password",
                   style: TextStyle(
