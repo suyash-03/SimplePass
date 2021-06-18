@@ -47,7 +47,7 @@ class _GeneratePageState extends State<GeneratePage> {
     return Scaffold(
       key: _scaffoldKey,
       drawer: NavigationDrawerWidget(),
-      backgroundColor: Color(0xffe79aad),
+      backgroundColor: Color(0xfffbe1e4),
       body: Column(
         children: [
           SizedBox(
@@ -70,7 +70,7 @@ class _GeneratePageState extends State<GeneratePage> {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height / 3,
                 decoration: BoxDecoration(
-                    color: Color(0xfffbe1e4),
+                    color: Color(0xffe79aad),
                     borderRadius: BorderRadius.all(
                       Radius.circular(40),
                     )),
@@ -170,7 +170,7 @@ class _GeneratePageState extends State<GeneratePage> {
                                 "Password Copied to Clipboard",
                                 style: rotateTextStyle,
                               ),
-                              backgroundColor: Color(0xfffbe1e4),
+                              backgroundColor: Color(0xffe79aad),
                             );
                             Scaffold.of(context)
                               ..removeCurrentSnackBar()
