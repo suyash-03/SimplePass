@@ -10,26 +10,18 @@ import 'Authentication/googleSignIn.dart';
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: MultiProvider(
-          providers: [
-            ChangeNotifierProvider(
-              create: (context) => GoogleSignInProvider(),
-            ),
-            Provider(create: (context)=> GeneratorClass())
-          ],
-          child: StreamBuilder(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context, snapshot) {
-              final provider = Provider.of<GoogleSignInProvider>(context);
-              if (provider.isSigningIn) {
-                return Loading();
-              } else if (snapshot.hasData) {
-                return HomePage();
-              } else {
-                return StartScreen();
-              }
-            },
-          ),
+        body: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            final provider = Provider.of<GoogleSignInProvider>(context);
+            if (provider.isSigningIn) {
+              return Loading();
+            } else if (snapshot.hasData) {
+              return HomePage();
+            } else {
+              return StartScreen();
+            }
+          },
         ),
       );
 }

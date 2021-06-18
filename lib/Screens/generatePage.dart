@@ -149,7 +149,7 @@ class _GeneratePageState extends State<GeneratePage> {
             child: FadeInDown(
               child: Container(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 80, 30, 20),
+                  padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
                   child: Container(
                     child: TextField(
                       controller: textController,
