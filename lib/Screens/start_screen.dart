@@ -37,27 +37,24 @@ class _StartScreenState extends State<StartScreen> {
           children: <Widget>[
             ClipPath(
               clipper: OvalBottomBorderClipper(),
-              child: ClipPath(
-                clipper: SideCutClipper(),
+              child: Container(
+                color: Color(0xffe5a3a3),
+                height: MediaQuery.of(context).size.height / 1.8,
                 child: Container(
-                  color: Color(0xffe5a3a3),
-                  height: MediaQuery.of(context).size.height / 1.8,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          FadeInUp(
-                            child: Image.asset(
-                              'assets/c1.png',
-                              height: 800,
-                              width: 800,
-                              fit: BoxFit.cover,
-                            ),
-                          )
-                        ],
-                      ),
+                  width: MediaQuery.of(context).size.width,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FadeInUp(
+                          child: Image.asset(
+                            'assets/c1.png',
+                            height: 800,
+                            width: 800,
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),
@@ -138,8 +135,7 @@ class _StartScreenState extends State<StartScreen> {
       decoration: BoxDecoration(gradient: gradBgReverse),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: SingleChildScrollView(
-          child: Column(
+        body:Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               SizedBox(
@@ -227,19 +223,22 @@ class _StartScreenState extends State<StartScreen> {
                   ),
                 ),
               ),
-              FadeInUp(
+              Expanded(
                 child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 350,
-                    child: Image.asset(
-                      'assets/b1.png',
-                      fit: BoxFit.cover,
-                    )),
+                  child: FadeInUp(
+                    child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 350,
+                        child: Image.asset(
+                          'assets/b1.png',
+                          fit: BoxFit.cover,
+                        )),
+                  ),
+                ),
               ),
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

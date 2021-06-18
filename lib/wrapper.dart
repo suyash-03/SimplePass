@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:password_generator/Generator/generator.dart';
 import 'package:password_generator/Screens/homepage.dart';
 import 'package:password_generator/Screens/start_screen.dart';
+import 'package:password_generator/shared/loading_pulse.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'Authentication/googleSignIn.dart';
 
 class Wrapper extends StatelessWidget {
@@ -22,7 +22,7 @@ class Wrapper extends StatelessWidget {
             builder: (context, snapshot) {
               final provider = Provider.of<GoogleSignInProvider>(context);
               if (provider.isSigningIn) {
-                return buildLoading();
+                return Loading();
               } else if (snapshot.hasData) {
                 return HomePage();
               } else {
@@ -32,14 +32,4 @@ class Wrapper extends StatelessWidget {
           ),
         ),
       );
-
-  Widget buildLoading() {
-    return Container(
-      color: Color(0xffeec0c6),
-      child: SpinKitPulse(
-        color: Colors.pinkAccent,
-        size: 100,
-      ),
-    );
-  }
 }

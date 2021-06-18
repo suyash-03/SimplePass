@@ -17,7 +17,6 @@ class GeneratePage extends StatefulWidget {
 }
 
 class _GeneratePageState extends State<GeneratePage> {
-  final PageController controller = PageController(initialPage: 0);
   final textController = TextEditingController();
   String finalGeneratedPassword = '';
 
@@ -195,7 +194,7 @@ class _GeneratePageState extends State<GeneratePage> {
               icon: FaIcon(FontAwesomeIcons.arrowRight),
               label: Text("View Saved Passwords"),
               onPressed: (){
-                controller.nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+                //controller
               },
             ),
           )
