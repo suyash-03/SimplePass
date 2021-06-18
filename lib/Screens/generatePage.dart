@@ -43,7 +43,6 @@ class _GeneratePageState extends State<GeneratePage> {
     final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
     final password = Provider.of<GeneratorClass>(context);
 
-
     return Scaffold(
       key: _scaffoldKey,
       drawer: NavigationDrawerWidget(),
@@ -104,16 +103,16 @@ class _GeneratePageState extends State<GeneratePage> {
                             ),
                             Expanded(
                                 child: Container(
-                              child: IconButton(
-                                icon: FaIcon(
-                                  FontAwesomeIcons.signOutAlt,
-                                  color: Colors.red,
-                                ),
-                                onPressed: () async {
-                                  provider.logout(context);
-                                },
-                              ),
-                            ))
+                                  child: IconButton(
+                                    icon: FaIcon(
+                                      FontAwesomeIcons.signOutAlt,
+                                      color: Colors.red,
+                                    ),
+                                    onPressed: () async {
+                                      provider.logout(context);
+                                      },
+                                  ),
+                                ))
                           ],
                         ),
                       ),
@@ -247,7 +246,10 @@ class _GeneratePageState extends State<GeneratePage> {
           FadeInDown(
             child: FlatButton.icon(
               icon: FaIcon(FontAwesomeIcons.arrowRight),
-              label: Text("View Saved Passwords"),
+              label: Text(
+                "Swipe to View Saved Passwords",
+                style: smallText,
+              ),
               onPressed: () {
                 widget.pageButtonPress();
               },
