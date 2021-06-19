@@ -16,7 +16,8 @@ class SavedPasswords extends StatefulWidget {
 
 class _SavedPasswordsState extends State<SavedPasswords> {
   Future<QuerySnapshot> passwordList;
-  bool isObscure;
+  bool isObscure=false;
+
 
   @override
   void initState() {
@@ -30,6 +31,7 @@ class _SavedPasswordsState extends State<SavedPasswords> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Color(0xfffbe1e4),
       body: Column(
@@ -52,7 +54,7 @@ class _SavedPasswordsState extends State<SavedPasswords> {
               ),
             ),
           ),
-          Container(
+          Expanded(
             child: FutureBuilder<QuerySnapshot>(
               future: passwordList, builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
@@ -74,24 +76,39 @@ class _SavedPasswordsState extends State<SavedPasswords> {
                                       borderRadius: BorderRadius.all(Radius.circular(20))),
                                   child: Column(
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(30, 10, 0, 5),
-                                        child: Align(
-                                            alignment: Alignment.topLeft,
-                                            child: Text(
-                                              passwordData['Website'], style: rotateTextStylePink,
-                                            )),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
+                                            child: Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Text(
+                                                  passwordData['Website'], style: rotateTextStylePink,
+                                                )),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
+                                            child: IconButton(icon: FaIcon(FontAwesomeIcons.trashAlt,color: Colors.red,),
+                                                onPressed: ()
+                                                {
+
+                                                }),
+                                          )
+                                        ],
                                       ),
                                       Container(
                                           child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(30, 10, 0, 5),
+                                            padding: const EdgeInsets.fromLTRB(30, 10, 30, 5),
                                             child: TextField(
                                               controller: _controller,
                                               readOnly: true,
                                               enableInteractiveSelection: false,
                                               decoration: new InputDecoration(
                                                 suffixIcon: IconButton(
-                                                  icon: FaIcon(FontAwesomeIcons.copy),
+                                                  icon: FaIcon(
+                                                    FontAwesomeIcons.copy,
+                                                  ),
                                                   onPressed: () {
                                                     final data = ClipboardData(
                                                         text: _controller.text);
@@ -126,7 +143,7 @@ class _SavedPasswordsState extends State<SavedPasswords> {
                             ));
                       });
                 } else if (snapshot.connectionState == ConnectionState.waiting)
-                  return Center(child: Loading());
+                  return Loading();
                 else
                   return Text("Cant Load");
                 },
