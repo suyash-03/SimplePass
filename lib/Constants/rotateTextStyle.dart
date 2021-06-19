@@ -1,7 +1,21 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 const rotateTextStyle = TextStyle(
   color: Color(0xff000000),
+  fontSize: 25,
+  fontFamily: 'Montserrat',
+  fontWeight: FontWeight.bold,
+);
+TextStyle rotateTextStyleHeading2 = TextStyle(
+  color: Colors.pinkAccent,
+  fontSize: 40,
+  fontFamily: 'SF',
+  fontWeight: FontWeight.bold,
+);
+
+const rotateTextStylePink = TextStyle(
+  color: Color(0xffc71565),
   fontSize: 25,
   fontFamily: 'Montserrat',
   fontWeight: FontWeight.bold,

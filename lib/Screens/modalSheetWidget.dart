@@ -23,7 +23,7 @@ class _ModalSheetWidgetState extends State<ModalSheetWidget> {
     String dateTime = _dateTime.toString().substring(0, 10);
 
     return Container(
-      height: 300,
+      height: 250,
       child: Column(
         children: <Widget>[
           SizedBox(
@@ -46,7 +46,7 @@ class _ModalSheetWidgetState extends State<ModalSheetWidget> {
               child: TextFormField(
                 controller: _controller,
                 decoration: InputDecoration(
-                  hintText: "Website/App Name",
+                  hintText: "  Website/Application Name",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(50)),
                       borderSide: BorderSide(color: Colors.pink)),
