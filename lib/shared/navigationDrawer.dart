@@ -5,7 +5,6 @@ import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:password_generator/Constants/colors.dart';
 import 'package:password_generator/Constants/rotateTextStyle.dart';
-import 'package:password_generator/Screens/homepage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
@@ -55,9 +54,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                   'Home',
                   style: rotateTextStyle2,
                 ),
-                onTap: (){
-                  Navigator.pop(context);
-                },
+                onTap: ()=> selectedItem(context, 0),
               ),
             ),
             Divider(
@@ -71,7 +68,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                   color: Colors.pink[800],
                 ),
                 title: Text(
-                  'About',
+                  'Contact',
                   style: rotateTextStyle2,
                 ),
                 onTap: () => selectedItem(context, 1),
@@ -141,15 +138,22 @@ class NavigationDrawerWidget extends StatelessWidget {
     );
   }
 
-  void selectedItem(BuildContext context, int index) {
+  Future<void> selectedItem(BuildContext context, int index) async {
     switch (index) {
       case 0:
-        Navigator.push(
-            context, CupertinoPageRoute(builder: (context) => HomePage()));
+        Navigator.pop(context);
         break;
       case 1:
-        Navigator.push(
-            context, CupertinoPageRoute(builder: (context) => HomePage()));
+        final Uri params = Uri(
+          scheme: 'mailto',
+          path: 'suyash.singh9450@gmail.com',
+          query: 'subject=SimplePass Feedback &body=App Version 1.0', //add subject and body here
+        );
+        var url = params.toString();
+        if(await canLaunch(url)){
+          await launch(url);}
+        else {
+          throw 'Could Not Launch $url';}
         break;
     }
   }
