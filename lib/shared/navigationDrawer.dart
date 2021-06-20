@@ -30,6 +30,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           FadeInUp(
+                            duration: Duration(milliseconds: 500),
                             child: Image.asset(
                               'assets/c2.png',
                               height: 500,

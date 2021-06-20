@@ -86,6 +86,7 @@ class _GeneratePageState extends State<GeneratePage> {
               ),
             ),
             FadeInDown(
+              duration: Duration(milliseconds: 500),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                 child: Container(
@@ -101,6 +102,7 @@ class _GeneratePageState extends State<GeneratePage> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(30, 60, 20, 10),
                         child: FadeInDown(
+                          duration: Duration(milliseconds: 500),
                           child: Row(
                             children: [
                               CircleAvatar(
@@ -126,6 +128,7 @@ class _GeneratePageState extends State<GeneratePage> {
                         ),
                       ),
                       FadeInDown(
+                        duration: Duration(milliseconds: 500),
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(30, 10, 20, 10),
                           child: Align(
@@ -137,6 +140,7 @@ class _GeneratePageState extends State<GeneratePage> {
                         ),
                       ),
                       FadeInDown(
+                        duration: Duration(milliseconds: 500),
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(30, 0, 20, 10),
                           child: Align(
@@ -154,6 +158,7 @@ class _GeneratePageState extends State<GeneratePage> {
             ),
             Container(
               child: FadeInDown(
+                duration: Duration(milliseconds: 500),
                 child: Container(
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
@@ -202,6 +207,7 @@ class _GeneratePageState extends State<GeneratePage> {
               height: 10,
             ),
             FadeInDown(
+              duration: Duration(milliseconds: 500),
               child: Container(
                 height: 50,
                 width: 300,
@@ -232,6 +238,7 @@ class _GeneratePageState extends State<GeneratePage> {
               height: 10,
             ),
             FadeInDown(
+              duration: Duration(milliseconds: 500),
               child: Container(
                 height: 50,
                 width: 300,
@@ -265,6 +272,7 @@ class _GeneratePageState extends State<GeneratePage> {
               height: 30,
             ),
             FadeInDown(
+              duration: Duration(milliseconds: 500),
               // ignore: deprecated_member_use
               child: FlatButton.icon(
                 icon: FaIcon(FontAwesomeIcons.arrowRight),
