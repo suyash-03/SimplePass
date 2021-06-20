@@ -98,8 +98,9 @@ class _SavedPasswordsState extends State<SavedPasswords> {
                 final TextEditingController _controller = TextEditingController();
                 _controller.text = data['Password'];
                 return Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 5),
-                  child: ZoomIn(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
+                  child: FadeInDown(
+                    duration: Duration(milliseconds: 600),
                     child: new Container(
                       height: 180,
                       decoration: BoxDecoration(

@@ -17,7 +17,7 @@
         </intent>
     </queries>
    <application
-        android:label="password_generator"
+        android:label="SimplePass"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
