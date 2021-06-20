@@ -26,13 +26,17 @@ class _HomePageState extends State<HomePage> {
   void onButtonPageChange(){
     controller.nextPage(duration: Duration(milliseconds: 300), curve: Curves.ease);
   }
+  void onButtonPageChangeBack(){
+    controller.previousPage(duration: Duration(milliseconds: 300), curve: Curves.ease);
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return PageView(
       scrollDirection: Axis.horizontal,
       controller: controller,
-      children: <Widget>[GeneratePage(onButtonPageChange), SavedPasswords()],
+      children: <Widget>[GeneratePage(onButtonPageChange), SavedPasswords(onButtonPageChangeBack)],
     );
   }
 }

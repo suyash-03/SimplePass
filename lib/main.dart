@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:password_generator/Screens/manualAdd_modalSheet.dart';
 import 'package:password_generator/saving&deleting//save_note.dart';
 import 'package:password_generator/wrapper.dart';
 import 'package:provider/provider.dart';
@@ -20,10 +21,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => GoogleSignInProvider(),
         ),
+        Provider(create: (context) => Save()
+        ),
         Provider(
             create: (context)=> GeneratorClass()
-        ),
-        Provider(create: (context) => Save()
         ),
       ],
       child: MaterialApp(

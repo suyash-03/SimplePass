@@ -40,3 +40,10 @@ const smallText = TextStyle(
   fontFamily: 'Montserrat',
   fontWeight: FontWeight.bold,
 );
+const smallTextItalic = TextStyle(
+  color: Color(0xff686868),
+  fontSize: 13,
+  fontFamily: 'Montserrat',
+  fontWeight: FontWeight.bold,
+  fontStyle: FontStyle.italic
+);

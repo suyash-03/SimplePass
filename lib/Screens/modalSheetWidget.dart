@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 class ModalSheetWidget extends StatefulWidget {
   final String password;
-
   ModalSheetWidget(this.password);
 
   @override

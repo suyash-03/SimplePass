@@ -13,7 +13,6 @@ import 'modalSheetWidget.dart';
 
 class GeneratePage extends StatefulWidget {
   final void Function() pageButtonPress;
-
   GeneratePage(this.pageButtonPress);
 
   @override

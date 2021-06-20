@@ -1,14 +1,17 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:password_generator/Constants/rotateTextStyle.dart';
+import 'package:password_generator/Screens/manualAdd_modalSheet.dart';
 import 'package:password_generator/shared/loading_pulse.dart';
 
 class SavedPasswords extends StatefulWidget {
-  const SavedPasswords({Key key}) : super(key: key);
+  final void Function() pageButtonPress;
+  SavedPasswords(this.pageButtonPress);
 
   @override
   _SavedPasswordsState createState() => _SavedPasswordsState();
@@ -27,7 +30,6 @@ class _SavedPasswordsState extends State<SavedPasswords> {
     passwordList = passwords.get();
     return passwordList;
   }
-
   @override
   Widget build(BuildContext context) {
 
@@ -36,7 +38,30 @@ class _SavedPasswordsState extends State<SavedPasswords> {
       body: Column(
         children: <Widget>[
           SizedBox(
-            height: 80,
+            height: 40,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(padding: EdgeInsets.fromLTRB(20, 0, 0, 5),
+                child: IconButton(icon: FaIcon(FontAwesomeIcons.backward,), onPressed: (){
+                  widget.pageButtonPress();
+                }),
+              ),
+              Padding(padding: EdgeInsets.fromLTRB(0, 0, 20, 5),
+                child: IconButton(icon: FaIcon(FontAwesomeIcons.plusCircle),
+                onPressed: (){
+                  showModalBottomSheet<dynamic>(context: context, shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
+                  ),
+                      isScrollControlled: true,
+                      isDismissible: true,
+                      builder: (BuildContext context){
+                        return ManualPasswordAdd();
+                      });
+                },),
+              )
+            ],
           ),
           FadeInDown(
             child: Padding(
@@ -69,7 +94,7 @@ class _SavedPasswordsState extends State<SavedPasswords> {
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(20, 0, 20, 2),
                               child: Container(
-                                height: 150,
+                                height: 180,
                                 child: Card(
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -141,6 +166,11 @@ class _SavedPasswordsState extends State<SavedPasswords> {
                                                 filled: true,
                                               ),
                                             ),
+                                          )),
+                                      Align(alignment: Alignment.centerLeft,
+                                          child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(40, 2, 0, 10),
+                                            child: Text(passwordData['DateTime'],style: smallTextItalic,),
                                           ))
                                     ],
                                   ),
