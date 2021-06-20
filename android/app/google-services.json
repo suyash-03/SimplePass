@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "754544459193-bgu7rt5ej5deqa3rshchv7v6rnvfnhf0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.suyash.password_generator",
+            "certificate_hash": "a63c1807adca93bd99d2421034ddb2eda5b006e2"
+          }
+        },
+        {
           "client_id": "754544459193-cn3plhpu9dn4v3jh506u0gpkgjd31q29.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
