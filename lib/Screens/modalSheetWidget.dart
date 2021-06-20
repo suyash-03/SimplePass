@@ -70,6 +70,7 @@ class _ModalSheetWidgetState extends State<ModalSheetWidget> {
                 if (_formKey.currentState.validate()) {
                   print('Form is valid');
                   saveProvider.saveNote(_controller.text, widget.password, dateTime);
+                  Navigator.pop(context);
                 } else {
                   print('Form is invalid');
                 }

@@ -19,14 +19,13 @@ class _SavedPasswordsState extends State<SavedPasswords> {
   bool isObscure=false;
 
 
-  @override
-  void initState() {
-    super.initState();
+  Future<QuerySnapshot> getPasswordList() async{
     CollectionReference passwords = FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser.uid)
-        .collection('savedPasswords');
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser.uid)
+          .collection('savedPasswords');
     passwordList = passwords.get();
+    return passwordList;
   }
 
   @override
@@ -56,7 +55,7 @@ class _SavedPasswordsState extends State<SavedPasswords> {
           ),
           Expanded(
             child: FutureBuilder<QuerySnapshot>(
-              future: passwordList, builder: (context, snapshot) {
+              future: getPasswordList(), builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   return ListView.builder(
                       scrollDirection: Axis.vertical,
@@ -90,9 +89,16 @@ class _SavedPasswordsState extends State<SavedPasswords> {
                                           Padding(
                                             padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
                                             child: IconButton(icon: FaIcon(FontAwesomeIcons.trashAlt,color: Colors.red,),
-                                                onPressed: ()
+                                                onPressed: () async
                                                 {
-
+                                                  //List Delete and Update
+                                                  await FirebaseFirestore.instance.runTransaction((Transaction myTransaction) async {
+                                                     myTransaction.delete(snapshot.data.docs[index].reference);
+                                                  }).then((value) {
+                                                    setState(() {
+                                                      
+                                                    });
+                                                  });
                                                 }),
                                           )
                                         ],

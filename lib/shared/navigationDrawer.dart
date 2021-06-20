@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:password_generator/Constants/colors.dart';
 import 'package:password_generator/Constants/rotateTextStyle.dart';
 import 'package:password_generator/Screens/homepage.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -101,13 +102,32 @@ class NavigationDrawerWidget extends StatelessWidget {
                               FontAwesomeIcons.instagram,
                               color: Colors.pink,
                             ),
-                            onPressed: () async {}),
+                            onPressed: () async {
+                              String url =
+                                  'https://www.instagram.com/__suyashsingh__/';
+                              if (await canLaunch(url)) {
+                                await launch(url,
+                                    forceSafariVC: true,
+                                    enableJavaScript: true);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                            }),
                         IconButton(
                             icon: FaIcon(
                               FontAwesomeIcons.github,
                               color: Colors.black,
                             ),
-                            onPressed: () async {})
+                            onPressed: () async {
+                              String url = 'https://github.com/suyash-03';
+                              if (await canLaunch(url)) {
+                                await launch(url,
+                                    forceSafariVC: true,
+                                    enableJavaScript: true);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                            })
                       ],
                     ),
                   ],
