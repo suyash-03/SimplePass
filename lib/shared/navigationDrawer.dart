@@ -21,7 +21,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                 clipper: OvalBottomBorderClipper(),
                 child: Container(
                   color: Color(0xffe5a3a3),
-                  height: MediaQuery.of(context).size.height / 1.8,
+                  height: MediaQuery.of(context).size.height / 2,
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     child: SingleChildScrollView(

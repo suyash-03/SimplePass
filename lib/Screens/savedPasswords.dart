@@ -50,7 +50,7 @@ class _SavedPasswordsState extends State<SavedPasswords> {
             Padding(
               padding: EdgeInsets.fromLTRB(0, 0, 20, 5),
               child: IconButton(
-                icon: FaIcon(FontAwesomeIcons.plusCircle),
+                icon: FaIcon(FontAwesomeIcons.plusCircle,color: Colors.purple,),
                 onPressed: () {
                   showModalBottomSheet<dynamic>(
                       context: context,
